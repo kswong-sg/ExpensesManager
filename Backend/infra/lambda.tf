@@ -1,7 +1,7 @@
 resource "aws_lambda_function" "process" {
   function_name = "ProcessExpenseFunction"
   handler       = "handler.process"
-  runtime       = "python3.11"
+  runtime       = "python3.12"
   timeout       = 60
   memory_size   = 256
 

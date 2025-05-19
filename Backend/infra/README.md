@@ -1,6 +1,13 @@
 # Infrastructure Setup on AWS
 
-# Local development
+## Pre-Req
+Setup Terraform state management. 
+```bash
+terraform init
+terraform apply
+```
+
+## Local development
 LocalStack with Podman:
 
 Podman CLI Command (One-liner)
@@ -18,8 +25,6 @@ podman run -d --name localstack \
 ```
 ✅ Note: If Podman is rootless, replace /var/run/docker.sock with Podman's socket location (often /run/user/1000/podman/podman.sock).
 
-
-
 Running LocalStack (localstack start)
 
 Setting AWS credentials to dummy values (AWS_ACCESS_KEY_ID=test AWS_SECRET_ACCESS_KEY=test)
@@ -31,24 +36,3 @@ terraform init
 terraform apply
 ```
 
-Following is the docker-compose.yml to launch LocalStack and tools like awslocal.
-
-
-
-provider "aws" {
-  region                      = var.region
-  access_key                  = "test"
-  secret_key                  = "test"
-  s3_force_path_style         = true
-  skip_credentials_validation = true
-  skip_metadata_api_check     = true
-  skip_requesting_account_id  = true
-
-  endpoints {
-    s3             = "http://localhost:4566"
-    dynamodb       = "http://localhost:4566"
-    lambda         = "http://localhost:4566"
-    apigateway     = "http://localhost:4566"
-    iam            = "http://localhost:4566"
-  }
-}
