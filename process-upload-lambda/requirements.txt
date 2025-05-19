@@ -1,0 +1,4 @@
+boto3==1.34.70
+botocore==1.34.70
+scikit-learn==1.4.2
+numpy==1.26.4
